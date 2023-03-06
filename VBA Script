@@ -1,0 +1,50 @@
+Sub stock_market()
+
+  ' Set an initial variable for holding the terms
+  Dim ticker As String
+  
+
+  ' Set an initial variable for holding the total stock volume
+  Dim Total_Volume As Double
+  Total_Volume = 0
+
+  ' Keep track of the location for each Ticker name in the summary table
+  Dim Summary_Table_Row As Integer
+  Summary_Table_Row = 2
+
+'To get last row instead of counting it yourself
+ lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+
+  ' Loop through all ticker volumes
+  For i = 2 To lastrow
+
+    ' Check if we are still within the same ticker name, if it is not...
+    If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+
+      ' Set the Ticker name
+      Ticker_Name = Cells(i, 1).Value
+
+      ' Print the Ticker name in the Summary Table
+      Range("I" & Summary_Table_Row).Value = Ticker_Name
+
+      ' Add one to the summary table row
+      Summary_Table_Row = Summary_Table_Row + 1
+      
+      ' Reset the Ticker Name
+      Ticker_Name = 0
+
+    ' If the cell immediately following a row is the same ticker name...
+    Else
+
+      ' Add to the TIcker Column
+      Brand_Total = Brand_Total + Cells(i, 3).Value
+
+    End If
+
+  Next i
+  
+  
+End Sub
+
+
+
